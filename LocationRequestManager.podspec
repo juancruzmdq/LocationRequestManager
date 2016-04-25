@@ -1,27 +1,11 @@
-#
-# Be sure to run `pod lib lint LocationRequestManager.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
 
 Pod::Spec.new do |s|
   s.name             = "LocationRequestManager"
   s.version          = "0.1.0"
-  s.summary          = "A short description of LocationRequestManager."
+  s.summary          = "Improving CLLocationManager encapsulating the location request in LocationRequest Class."
+  s.description      = "This library was created with the intetion of simplify the use of CLLocationManager. LocationRequestManager is a wraper for CLLocationManager which handle a set of LocationRequest. For each request you can specify some parameters like timeout, distance filter, accuracy"
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = <<-DESC
-                       DESC
-
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/LocationRequestManager"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "https://github.com/juancruzmdq/LocationRequestManager"
   s.license          = 'MIT'
   s.author           = { "Juan Cruz Ghigliani" => "juancruzmdq@gmail.com" }
   s.source           = { :git => "https://github.com/juancruzmdq/LocationRequestManager.git", :tag => s.version.to_s }
@@ -34,7 +18,4 @@ Pod::Spec.new do |s|
     'LocationRequestManager' => ['LocationRequestManager/Assets/*.png']
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
