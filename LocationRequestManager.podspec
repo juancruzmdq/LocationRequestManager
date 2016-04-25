@@ -24,8 +24,8 @@ Pod::Spec.new do |s|
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Juan Cruz Ghigliani" => "juancruzmdq@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/LocationRequestManager.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/juancruzmdq/LocationRequestManager.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/juancruzmdq'
 
   s.ios.deployment_target = '8.0'
 
