@@ -1,0 +1,6 @@
+framework module Pods_LocationRequestManager_Tests {
+  umbrella header "Pods-LocationRequestManager_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

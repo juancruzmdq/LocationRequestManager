@@ -1,0 +1,6 @@
+framework module LocationRequestManager {
+  umbrella header "LocationRequestManager-umbrella.h"
+
+  export *
+  module * { export * }
+}
