@@ -5,11 +5,38 @@
 [![License](https://img.shields.io/cocoapods/l/LocationRequestManager.svg?style=flat)](http://cocoapods.org/pods/LocationRequestManager)
 [![Platform](https://img.shields.io/cocoapods/p/LocationRequestManager.svg?style=flat)](http://cocoapods.org/pods/LocationRequestManager)
 
+
+This library was created with the intetion of simplify the use of CLLocationManager. LocationRequestManager is a wraper for CLLocationManager which handle a set of LocationRequest. For each request you can specify some parameters like timeout, distance filter, accuracy.
+
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+```swift
+let locationRequestManager: LocationRequestManager = LocationRequestManager()
+var basicRequest:LocationRequest?
+var timeoutRequest:LocationRequest?
+
+
+self.basicRequest = LocationRequest{(currentLocation:CLLocation?,error: NSError?)->Void in
+print("\(self.basicRequest!.status) - \(currentLocation) - \(error)")
+}
+
+self.timeoutRequest = LocationRequest{(currentLocation:CLLocation?,error: NSError?)->Void in
+print("\(self.timeoutRequest!.status) - \(currentLocation) - \(error)")
+}
+self.timeoutRequest!.desiredAccuracy = 1000
+self.timeoutRequest!.timeout = 10
+
+locationRequestManager.performRequest(self.basicRequest!)
+
+locationRequestManager.performRequest(self.timeoutRequest!)
+
+
+
+```
+
 
 ## Installation
 
