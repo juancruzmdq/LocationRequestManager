@@ -7,15 +7,39 @@
 //
 
 import UIKit
+import CoreLocation
+import LocationRequestManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let locationRequestManager: LocationRequestManager = LocationRequestManager()
+    var basicRequest:LocationRequest?
+    var timeoutRequest:LocationRequest?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        self.basicRequest = LocationRequest{(currentLocation:CLLocation?,error: NSError?)->Void in
+            print("\(self.basicRequest!.status) - \(currentLocation) - \(error)")
+        }
+        
+        self.timeoutRequest = LocationRequest{(currentLocation:CLLocation?,error: NSError?)->Void in
+            print("\(self.timeoutRequest!.status) - \(currentLocation) - \(error)")
+        }
+
+        self.timeoutRequest!.desiredAccuracy = 0
+        self.timeoutRequest!.timeout = 10
+
+        locationRequestManager.performRequest(self.basicRequest!)
+        
+        locationRequestManager.performRequest(self.timeoutRequest!)
+
+        
+        
         return true
     }
 

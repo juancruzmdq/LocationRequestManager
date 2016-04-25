@@ -13,7 +13,7 @@ import CoreLocation
 
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: Types
-typealias AuthorizationBlock = (status:CLAuthorizationStatus)-> Void
+public typealias AuthorizationBlock = (status:CLAuthorizationStatus)-> Void
 
 /**
  *  Class in charge of manage all location request, and handle an internal ios location manager
@@ -36,7 +36,7 @@ typealias AuthorizationBlock = (status:CLAuthorizationStatus)-> Void
  
  
  */
-class LocationRequestManager : NSObject,CLLocationManagerDelegate{
+public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
     ////////////////////////////////////////////////////////////////////////////////
     // MARK: Private Properties
     private let locationManager:CLLocationManager = CLLocationManager()
@@ -45,7 +45,7 @@ class LocationRequestManager : NSObject,CLLocationManagerDelegate{
     
     ////////////////////////////////////////////////////////////////////////////////
     // MARK: Setup & Teardown
-    internal override init(){
+    public override init(){
         super.init()
         locationManager.delegate = self
     }
@@ -57,7 +57,7 @@ class LocationRequestManager : NSObject,CLLocationManagerDelegate{
      
      - parameter request: Intance of LocationRequest
      */
-    func performRequest(request:LocationRequest) {
+    public func performRequest(request:LocationRequest) {
         
         
         // Already exist the location in the repository
@@ -108,7 +108,7 @@ class LocationRequestManager : NSObject,CLLocationManagerDelegate{
 
     }
     
-    func cancelAllRequests() {
+    public func cancelAllRequests() {
         for request:LocationRequest in self.requests {
             if request.status == LocationRequestStatus.Active {
                 request.cancel()
@@ -116,7 +116,7 @@ class LocationRequestManager : NSObject,CLLocationManagerDelegate{
         }
     }
     
-    func startAllRequests() {
+    public func startAllRequests() {
         for request:LocationRequest in self.requests {
             if request.status == LocationRequestStatus.Pending {
                 request.start()
@@ -131,7 +131,7 @@ class LocationRequestManager : NSObject,CLLocationManagerDelegate{
      
      - parameter block: blok Instance of AuthorizationBlock
      */
-    func requestWhenInUseAuthorization(block: AuthorizationBlock) {
+    public func requestWhenInUseAuthorization(block: AuthorizationBlock) {
         self.authorizationBlock = block
         self.locationManager.requestWhenInUseAuthorization()
     }
@@ -141,7 +141,7 @@ class LocationRequestManager : NSObject,CLLocationManagerDelegate{
      
      - parameter block: blok Instance of AuthorizationBlock
      */
-    func requestAlwaysAuthorization(block: AuthorizationBlock){
+    public func requestAlwaysAuthorization(block: AuthorizationBlock){
         self.authorizationBlock = block
         self.locationManager.requestAlwaysAuthorization()
     }
@@ -154,7 +154,7 @@ class LocationRequestManager : NSObject,CLLocationManagerDelegate{
      - parameter manager: instance of CLLocationManager
      - parameter status:  CLAuthorizationStatus status
      */
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus){
+    public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus){
         if let block:AuthorizationBlock = self.authorizationBlock {
             block(status: status)
         }
@@ -166,7 +166,7 @@ class LocationRequestManager : NSObject,CLLocationManagerDelegate{
      - parameter manager: instance of CLLocationManager
      - parameter error:   instance of NSError
      */
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         for request:LocationRequest in self.requests {
             if request.status == LocationRequestStatus.Active {
                 request.update(error)
@@ -181,7 +181,7 @@ class LocationRequestManager : NSObject,CLLocationManagerDelegate{
      - parameter manager:   instance of CLLocationManager
      - parameter locations: array of CLLocation
      */
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         // Get first location element
         let location = locations[0]

@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LocationRequestManager: eac57bd14d0e5f14faf47789fddd8842f2dfd246
+  LocationRequestManager: 5d0d174e164d356d1f92cffa48d255a6466b26a5
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
   Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
 

@@ -13,9 +13,9 @@ import CoreLocation
 
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: Types
-typealias CompleteRequestBlock = (currentLocation:CLLocation?,error: NSError?)->Void
+public typealias CompleteRequestBlock = (currentLocation:CLLocation?,error: NSError?)->Void
 
-enum LocationRequestStatus {
+public enum LocationRequestStatus {
     case Pending
     case Active
     case Timeout
@@ -26,17 +26,17 @@ enum LocationRequestStatus {
 /**
  * Class that define a Location Request to be executed by a LocationManager
  */
-class LocationRequest {
+public class LocationRequest {
     ////////////////////////////////////////////////////////////////////////////////
     // MARK: Private Properties
-    var status:LocationRequestStatus = .Pending
-    var desiredAccuracy:CLLocationAccuracy = kCLLocationAccuracyThreeKilometers
-    var distanceFilter:CLLocationDistance = kCLDistanceFilterNone;
-    var recurrent:Bool = false
-    var timeout:NSTimeInterval?
-    var block:CompleteRequestBlock?
-    var latestLocation:CLLocation?
-    var latestError:NSError?
+    public var status:LocationRequestStatus = .Pending
+    public var desiredAccuracy:CLLocationAccuracy = kCLLocationAccuracyThreeKilometers
+    public var distanceFilter:CLLocationDistance = kCLDistanceFilterNone;
+    public var recurrent:Bool = false
+    public var timeout:NSTimeInterval?
+    public var block:CompleteRequestBlock?
+    public var latestLocation:CLLocation?
+    public var latestError:NSError?
     
     ////////////////////////////////////////////////////////////////////////////////
     // MARK: Public Properties
@@ -47,7 +47,7 @@ class LocationRequest {
     
     ////////////////////////////////////////////////////////////////////////////////
     // MARK: Setup & Teardown
-    internal init(_ block:CompleteRequestBlock?){
+    public  init(_ block:CompleteRequestBlock?){
         self.block = block
     }
     
