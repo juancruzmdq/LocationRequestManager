@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'LocationRequestManager_Example', :exclusive => true do
+  pod 'LocationRequestManager', :path => '../'
+end
+
+target 'LocationRequestManager_Tests', :exclusive => true do
+  pod 'LocationRequestManager', :path => '../'
+
+  pod 'Quick', '~> 0.8'
+  pod 'Nimble', '~> 3.0'
+end
