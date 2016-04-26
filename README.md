@@ -36,13 +36,31 @@ print("\(self.timeoutRequest!.status) - \(currentLocation) - \(error)")
 }
 self.timeoutRequest!.desiredAccuracy = kCLLocationAccuracyBest // CLLocationAccuracy
 self.timeoutRequest!.timeout = 10
+```
 
-// We launch, this two request. Location manager will be active until satisfy this two request o reach the timeout limit
+```swift
+
+// performRequest() add and launch the request. We can perform more than one request in parallel . Location manager will be active until satisfy this two request o reach the timeout limit
 
 locationRequestManager.performRequest(self.basicRequest!)
 
 locationRequestManager.performRequest(self.timeoutRequest!)
 
+```
+
+another way to add request to manager
+
+```swift
+
+// We add this 2 request to the manager, and then we decide qhen to perform the requests. Location manager will be active until satisfy this two request o reach the timeout limit
+
+locationRequestManager.addRequest(self.basicRequest!)
+
+locationRequestManager.addRequest(self.timeoutRequest!)
+
+...
+
+locationRequestManager.performRequests()
 
 ```
 
