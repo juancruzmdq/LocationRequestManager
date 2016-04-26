@@ -34,9 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.timeoutRequest!.desiredAccuracy = 0
         self.timeoutRequest!.timeout = 10
 
-        locationRequestManager.performRequest(self.basicRequest!)
+        locationRequestManager.addRequest(self.basicRequest!)
         
-        locationRequestManager.performRequest(self.timeoutRequest!)
+        locationRequestManager.addRequest(self.timeoutRequest!)
+        
+        locationRequestManager.performRequests()
 
         
         return true

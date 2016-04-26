@@ -25,6 +25,29 @@ import Foundation
 import CoreLocation
 
 ////////////////////////////////////////////////////////////////////////////////
+// MARK: Private Extension
+
+extension Array where Element: Equatable {
+    mutating func removeObject(object: Element) {
+        if let index = self.indexOf(object) {
+            self.removeAtIndex(index)
+        }
+    }
+    
+    mutating func removeObjectsInArray(array: [Element]) {
+        for object in array {
+            self.removeObject(object)
+        }
+    }
+}
+
+extension LocationRequest: Equatable {}
+public func ==(lhs:LocationRequest,rhs:LocationRequest) -> Bool {
+    return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
 // MARK: Types
 public typealias AuthorizationBlock = (status:CLAuthorizationStatus)-> Void
 
@@ -53,7 +76,7 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
     ////////////////////////////////////////////////////////////////////////////////
     // MARK: Private Properties
     private let locationManager:CLLocationManager = CLLocationManager()
-    private var requests:[LocationRequest] = []
+    private(set) public var requests:[LocationRequest] = []
     private var authorizationBlock:AuthorizationBlock?
     
     ////////////////////////////////////////////////////////////////////////////////
@@ -65,14 +88,8 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
     
     ////////////////////////////////////////////////////////////////////////////////
     // MARK: public Methods
-    /**
-     This method add a LocationRequest to the repository, check if the user already accept the location permisions, and start/cancel all request
-     
-     - parameter request: Intance of LocationRequest
-     */
-    public func performRequest(request:LocationRequest) {
-        
-        
+    
+    public func addRequest(request:LocationRequest){
         // Already exist the location in the repository
         let exist = self.requests.contains { (currentReq) -> Bool in
             
@@ -87,8 +104,39 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
         if !exist {
             self.requests.append(request)
         }
-        
+    }
+    
+    public func addRequests(requests:[LocationRequest]){
+        for request in requests {
+            self.addRequest(request)
+        }
+    }
+    
+    public func removeRequest(request:LocationRequest){
+        self.requests.removeAtIndex((self.requests as NSArray).indexOfObject(request))
+    }
+
+    public func removeRequests(requests:[LocationRequest]){
+        self.requests.removeObjectsInArray(requests)
+    }
+    
+    public func removeAllRequests(){
+        self.requests.removeAll()
+    }
+
+    
+    /**
+     This method add a LocationRequest to the repository, check if the user already accept the location permisions, and start/cancel all request
+     
+     - parameter request: Intance of LocationRequest
+     */
+    public func performRequest(request:LocationRequest) {
+        self.addRequest(request)
         request.status = LocationRequestStatus.Pending
+        self.performRequests()
+    }
+
+    public func performRequests() {
         
         // set location manager params according to the best presition of all requests
         
@@ -118,8 +166,8 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
         }else{
             self.startAllRequests()
         }
-
     }
+
     
     public func cancelAllRequests() {
         for request:LocationRequest in self.requests {
@@ -137,7 +185,6 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
         }
         self.locationManager.startUpdatingLocation()
     }
-
     
     /**
      Ask user for location traking while the app is in use, when the user answer, the AuthorizationBlock is executed
