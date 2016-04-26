@@ -70,6 +70,46 @@ locationRequestManager.requestWhenInUseAuthorization { (status:CLAuthorizationSt
 }
 
 ```
+## Request setting
+
+After create a LocationRequest, you can specify a set of parameters that will be used to detect when the location manager can satisfy your needs
+
+
+The accuracy of the location data. You should assign a value to this property that is appropriate for your usage scenario. For example, if you need the current location only within a kilometer, you should specify kCLLocationAccuracyKilometer and not kCLLocationAccuracyBestForNavigation. Determining a location with greater accuracy requires more time and more power.
+```swift
+public var desiredAccuracy:CLLocationAccuracy = kCLLocationAccuracyThreeKilometers
+```
+
+The minimum distance (measured in meters) a device must move horizontally before an update event is generated.
+```swift
+public var distanceFilter:CLLocationDistance = kCLDistanceFilterNone;
+```
+
+If true, the location manager won't stop return the location, usefull for navigation apps
+```swift
+public var recurrent:Bool = false
+```
+
+Limit of time to return with a valid location. after timeout the callback block will be called, with the status .Timeout
+```swift
+public var timeout:NSTimeInterval?
+```
+
+Callback block that will be called at the end of the location tracking
+```swift
+public var block:CompleteRequestBlock?
+```
+
+Value of the latest location returned by the locationManager
+```swift
+public var latestLocation:CLLocation?
+```
+
+Value of the latest error returned by the locationManager
+```swift
+public var latestError:NSError?
+```
+
 
 ## Installation
 
