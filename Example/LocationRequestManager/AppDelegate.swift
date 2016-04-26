@@ -39,7 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         locationRequestManager.performRequest(self.timeoutRequest!)
 
         
-        
         return true
     }
 

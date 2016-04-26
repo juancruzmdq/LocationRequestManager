@@ -13,8 +13,16 @@ This library was created with the intetion of simplify the use of CLLocationMana
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+You should create an instance of LocationRequestManager, this class will be in charge of initialice a locationManager, ask for Authorization to the user, and handle all user location request.
+
+When you need the current location, you should create a new LocationRequest, and pass this request to the locationManager. The location manager will be listening your location until be able to satisfy your request
+
+You can send more that one simultaneous request, location manager will be active, until satisfy all requests
+
 ```swift
 let locationRequestManager: LocationRequestManager = LocationRequestManager()
+
+// we create to request
 var basicRequest:LocationRequest?
 var timeoutRequest:LocationRequest?
 
@@ -26,17 +34,42 @@ print("\(self.basicRequest!.status) - \(currentLocation) - \(error)")
 self.timeoutRequest = LocationRequest{(currentLocation:CLLocation?,error: NSError?)->Void in
 print("\(self.timeoutRequest!.status) - \(currentLocation) - \(error)")
 }
-self.timeoutRequest!.desiredAccuracy = 1000
+self.timeoutRequest!.desiredAccuracy = kCLLocationAccuracyBest // CLLocationAccuracy
 self.timeoutRequest!.timeout = 10
+
+// We launch, this two request. Location manager will be active until satisfy this two request o reach the timeout limit
 
 locationRequestManager.performRequest(self.basicRequest!)
 
 locationRequestManager.performRequest(self.timeoutRequest!)
 
 
-
 ```
 
+## Request Location Authorization
+
+When you call performRequest() the library will check the permision's status, and if necessary will call  requestAlwaysAuthorization or requestWhenInUseAuthorization depending your plist settings (kCLAuthorizationStatusAuthorizedAlways or kCLAuthorizationStatusAuthorizedWhenInUse)
+
+But you can also call the request auth flow when you need, for example:
+
+```swift
+let locationRequestManager: LocationRequestManager = LocationRequestManager()
+
+locationRequestManager.requestAlwaysAuthorization { (status:CLAuthorizationStatus) in
+    print("Auth Status: \(status)")
+}
+
+```
+or
+
+```swift
+let locationRequestManager: LocationRequestManager = LocationRequestManager()
+
+locationRequestManager.requestWhenInUseAuthorization { (status:CLAuthorizationStatus) in
+    print("Auth Status: \(status)")
+}
+
+```
 
 ## Installation
 
