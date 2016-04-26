@@ -30,14 +30,12 @@
 		3DDEE9E9D2A2C2CB6A314AECC37AB61D /* QCKDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E738963C2EB4542069F1E6586836C9 /* QCKDSL.m */; };
 		415F29FE4E9D970954C46CD3CF4AE345 /* SatisfyAnyOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8C873CB5F43A0FA130C9B9FF74B6B0 /* SatisfyAnyOf.swift */; };
 		486B74C8EFEB68AD25CE128F3051E432 /* ObjCExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129290F935182407C183EB04C0C2C90 /* ObjCExpectation.swift */; };
-		497FA9AE69DC8F43B18C06A5A1881B05 /* LocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEABFD9EE25A4C2F91B194D574E1B5C /* LocationRequest.swift */; };
 		4AF6C26A30D865059C24DC5317786B76 /* BeNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2748FABD1661E3A75F8B07E115CF96 /* BeNil.swift */; };
 		4E5A721963877AA3A6AA3D80DAA4E5E9 /* AssertionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAA753452F6B96DE24D2CF7D396628 /* AssertionRecorder.swift */; };
 		5096058288A0A190D02B8B91A6F4120E /* LocationRequestManager-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B854E2F326A763801B649ECF233683 /* LocationRequestManager-dummy.m */; };
 		5104AE2989305145BF446E633B567924 /* EndWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE5DB72110FF4FE8D16C90A617EFD92 /* EndWith.swift */; };
 		52C50B6FA28B5220E77B8E24C631B188 /* QCKDSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7005B0ADF96C275382B45359AE1A0FDC /* QCKDSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5961E42F761887EB9C2C508C5848A224 /* NSBundle+CurrentTestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B16739831A57E59BFE39E8BF50128C /* NSBundle+CurrentTestBundle.swift */; };
-		5AEC6CD1E25E03C7AC5BBE9CD13E91F8 /* LocationRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DA99ECCFA3879E72BD171912277D78 /* LocationRequestManager.swift */; };
 		5EF5C00C6AECE1FCFFF118577817F5CE /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D3661DD977D936FA0FEA7FDE08D852 /* Equal.swift */; };
 		6241E56E546C87FD06DCD5AE6C341009 /* World+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FCFFDCC88E9151397B8D50F79E36E /* World+DSL.swift */; };
 		63BBD83995BA60FA7D2E6AD4138C0D71 /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354B5315AD30C24D1172D4F1524B068D /* Functional.swift */; };
@@ -100,6 +98,8 @@
 		E909D0D33037F3C642BBB8D47FC642B3 /* Nimble-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EA1C305082DBF75710A818FFBD2714D2 /* Nimble-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E9A500611CF699885DE8A6BAB4E6B392 /* BeEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9111139F990D8CA088F1437E67693E8D /* BeEmpty.swift */; };
 		EA8333743A55C12986E4B1383D8140E2 /* Pods-LocationRequestManager_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63BE4F2BEB120C2CD4720881B2C503 /* Pods-LocationRequestManager_Example-dummy.m */; };
+		EE513F391CCEE8D30056575F /* LocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE513F371CCEE8D30056575F /* LocationRequest.swift */; };
+		EE513F3A1CCEE8D30056575F /* LocationRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE513F381CCEE8D30056575F /* LocationRequestManager.swift */; };
 		F5EF09D2C03B84F266F311A366AA50DD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279AA6492631DEFA8C439A9C088EEB8A /* XCTest.framework */; };
 		F85A9207A8601CE7F835CEC56790616F /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51465DCF8ECE9AE4DD3DECD5656849CE /* Expectation.swift */; };
 		F974AD1C8E7E0D4436F8862C1CEBA700 /* Quick-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED85DFD58F13E73CC6080D18D5C1E10 /* Quick-dummy.m */; };
@@ -221,14 +221,12 @@
 		91EB10846A1D5A8B9A3BA28C5457DF56 /* NSString+QCKSelectorName.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+QCKSelectorName.h"; path = "Sources/Quick/NSString+QCKSelectorName.h"; sourceTree = "<group>"; };
 		92A6A0A9803BE2F48849E28590ED7202 /* Pods_LocationRequestManager_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationRequestManager_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9341EE27FCA41AD8B88193EC0C839859 /* AsyncMatcherWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncMatcherWrapper.swift; path = Sources/Nimble/Wrappers/AsyncMatcherWrapper.swift; sourceTree = "<group>"; };
-		94DA99ECCFA3879E72BD171912277D78 /* LocationRequestManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationRequestManager.swift; sourceTree = "<group>"; };
 		971FBD63640E42D5B13E199D80A38E44 /* MatcherFunc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MatcherFunc.swift; path = Sources/Nimble/Wrappers/MatcherFunc.swift; sourceTree = "<group>"; };
 		9759ABA2939945FD31FB478AE32D9E15 /* CurrentTestCaseTracker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CurrentTestCaseTracker.m; path = Sources/Nimble/objc/CurrentTestCaseTracker.m; sourceTree = "<group>"; };
 		97B2B3CFA9645246A81942C8D2F1C828 /* Pods-LocationRequestManager_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LocationRequestManager_Tests-umbrella.h"; sourceTree = "<group>"; };
 		9A63BE4F2BEB120C2CD4720881B2C503 /* Pods-LocationRequestManager_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LocationRequestManager_Example-dummy.m"; sourceTree = "<group>"; };
 		9C9BDD560EE526855DE84D06CB80942C /* Pods-LocationRequestManager_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LocationRequestManager_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9DC1174FD42CD6684C5DE79AC08B57C5 /* DSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DSL.h; path = Sources/Nimble/objc/DSL.h; sourceTree = "<group>"; };
-		9FEABFD9EE25A4C2F91B194D574E1B5C /* LocationRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationRequest.swift; sourceTree = "<group>"; };
 		A1177F46842A02EE1A9A945434E453FF /* QuickSpec.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QuickSpec.m; path = Sources/Quick/QuickSpec.m; sourceTree = "<group>"; };
 		A129290F935182407C183EB04C0C2C90 /* ObjCExpectation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjCExpectation.swift; path = Sources/Nimble/ObjCExpectation.swift; sourceTree = "<group>"; };
 		A2ADFE64923497AA07A24FC59913A587 /* NMBExceptionCapture.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMBExceptionCapture.h; path = Sources/Nimble/objc/NMBExceptionCapture.h; sourceTree = "<group>"; };
@@ -267,6 +265,8 @@
 		E91A488B96D0B7F04653CE8E7FB88470 /* Pods-LocationRequestManager_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LocationRequestManager_Example-umbrella.h"; sourceTree = "<group>"; };
 		EA1C305082DBF75710A818FFBD2714D2 /* Nimble-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-umbrella.h"; sourceTree = "<group>"; };
 		ED6D27EEE26C030C9F337E8E12D56341 /* LocationRequestManager-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LocationRequestManager-umbrella.h"; sourceTree = "<group>"; };
+		EE513F371CCEE8D30056575F /* LocationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationRequest.swift; sourceTree = "<group>"; };
+		EE513F381CCEE8D30056575F /* LocationRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationRequestManager.swift; sourceTree = "<group>"; };
 		EFB2D871B9C6D5C6EE2172BB9AFD2627 /* BeVoid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeVoid.swift; path = Sources/Nimble/Matchers/BeVoid.swift; sourceTree = "<group>"; };
 		F17FBDF6FF6B666A3D102EDD81DFE416 /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Sources/Quick/Filter.swift; sourceTree = "<group>"; };
 		F25975F60F7B14D8FFF5C38748BAFE0F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -446,7 +446,7 @@
 		6F8C0C703303D83F483B99CA154AA37C /* LocationRequestManager */ = {
 			isa = PBXGroup;
 			children = (
-				E7152D12FE64E82D8981492E1866E7AE /* Classes */,
+				EE513F361CCEE8D30056575F /* Sources */,
 			);
 			path = LocationRequestManager;
 			sourceTree = "<group>";
@@ -574,13 +574,14 @@
 			path = "../Target Support Files/Nimble";
 			sourceTree = "<group>";
 		};
-		E7152D12FE64E82D8981492E1866E7AE /* Classes */ = {
+		EE513F361CCEE8D30056575F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				9FEABFD9EE25A4C2F91B194D574E1B5C /* LocationRequest.swift */,
-				94DA99ECCFA3879E72BD171912277D78 /* LocationRequestManager.swift */,
+				EE513F371CCEE8D30056575F /* LocationRequest.swift */,
+				EE513F381CCEE8D30056575F /* LocationRequestManager.swift */,
 			);
-			path = Classes;
+			name = Sources;
+			path = ../Sources;
 			sourceTree = "<group>";
 		};
 		F2C651F4FEAE95363B68540C0DB8AD5F /* Products */ = {
@@ -906,9 +907,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				497FA9AE69DC8F43B18C06A5A1881B05 /* LocationRequest.swift in Sources */,
+				EE513F3A1CCEE8D30056575F /* LocationRequestManager.swift in Sources */,
+				EE513F391CCEE8D30056575F /* LocationRequest.swift in Sources */,
 				5096058288A0A190D02B8B91A6F4120E /* LocationRequestManager-dummy.m in Sources */,
-				5AEC6CD1E25E03C7AC5BBE9CD13E91F8 /* LocationRequestManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
