@@ -12,10 +12,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/juancruzmdq'
 
   s.ios.deployment_target = '8.0'
-
-  s.source_files = 'LocationRequestManager/Classes/**/*'
-  s.resource_bundles = {
-    'LocationRequestManager' => ['LocationRequestManager/Assets/*.png']
-  }
+  s.frameworks       = 'Foundation', 'CoreLocation'
+  s.source_files = 'Sources/*.swift'
 
 end
