@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/LocationRequestManager.svg?style=flat)](http://cocoapods.org/pods/LocationRequestManager)
 
 
-This library was created with the intetion of simplify the use of CLLocationManager. LocationRequestManager is a wraper for CLLocationManager which handle a set of LocationRequest. For each request you can specify some parameters like timeout, distance filter, accuracy.
+This library was created with the intention of simplify the use of CLLocationManager. LocationRequestManager is a wraper for CLLocationManager which handle a set of LocationRequest. For each request you can specify some parameters like timeout, distance filter, accuracy.
 
 
 ## Usage
