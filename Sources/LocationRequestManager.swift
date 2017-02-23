@@ -29,14 +29,14 @@ import CoreLocation
 
 extension Array where Element: Equatable {
     mutating func removeObject(object: Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
+        if let index = self.index(of: object) {
+            self.remove(at: index)
         }
     }
     
     mutating func removeObjectsInArray(array: [Element]) {
         for object in array {
-            self.removeObject(object)
+            self.removeObject(object: object)
         }
     }
 }
@@ -49,7 +49,7 @@ public func ==(lhs:LocationRequest,rhs:LocationRequest) -> Bool {
 
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: Types
-public typealias AuthorizationBlock = (status:CLAuthorizationStatus)-> Void
+public typealias AuthorizationBlock = (_ status:CLAuthorizationStatus)-> Void
 
 /**
  *  Class in charge of manage all location request, and handle an internal ios location manager
@@ -108,16 +108,16 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
     
     public func addRequests(requests:[LocationRequest]){
         for request in requests {
-            self.addRequest(request)
+            self.addRequest(request: request)
         }
     }
     
     public func removeRequest(request:LocationRequest){
-        self.requests.removeAtIndex((self.requests as NSArray).indexOfObject(request))
+        self.requests.remove(at: (self.requests as NSArray).index(of: request))
     }
 
     public func removeRequests(requests:[LocationRequest]){
-        self.requests.removeObjectsInArray(requests)
+        self.requests.removeObjectsInArray(array: requests)
     }
     
     public func removeAllRequests(){
@@ -131,7 +131,7 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
      - parameter request: Intance of LocationRequest
      */
     public func performRequest(request:LocationRequest) {
-        self.addRequest(request)
+        self.addRequest(request: request)
         request.status = LocationRequestStatus.Pending
         self.performRequests()
     }
@@ -140,19 +140,19 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
         
         // set location manager params according to the best presition of all requests
         
-        if CLLocationManager.authorizationStatus() == .NotDetermined{
+        if CLLocationManager.authorizationStatus() == .notDetermined{
             // check which perms should ask according to the plist config
-            if (NSBundle.mainBundle().objectForInfoDictionaryKey("NSLocationWhenInUseUsageDescription") != nil) {
-                self.requestWhenInUseAuthorization({ (status) in
-                    if status == .AuthorizedWhenInUse{
+            if (Bundle.main.object(forInfoDictionaryKey: "NSLocationWhenInUseUsageDescription") != nil) {
+                self.requestWhenInUseAuthorization(block: { (status) in
+                    if status == .authorizedWhenInUse{
                         self.startAllRequests()
                     }else{
                         self.cancelAllRequests()
                     }
                 })
-            } else if (NSBundle.mainBundle().objectForInfoDictionaryKey("NSLocationAlwaysUsageDescription") != nil) {
-                self.requestAlwaysAuthorization({ (status) in
-                    if status == .AuthorizedAlways{
+            } else if (Bundle.main.object(forInfoDictionaryKey: "NSLocationAlwaysUsageDescription") != nil) {
+                self.requestAlwaysAuthorization(block: { (status) in
+                    if status == .authorizedAlways{
                         self.startAllRequests()
                     }else{
                         self.cancelAllRequests()
@@ -161,7 +161,7 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
             }
             
             
-        }else if (CLLocationManager.authorizationStatus() == .Denied)||(CLLocationManager.authorizationStatus() == .Restricted) {
+        }else if (CLLocationManager.authorizationStatus() == .denied)||(CLLocationManager.authorizationStatus() == .restricted) {
             self.cancelAllRequests()
         }else{
             self.startAllRequests()
@@ -191,7 +191,7 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
      
      - parameter block: blok Instance of AuthorizationBlock
      */
-    public func requestWhenInUseAuthorization(block: AuthorizationBlock) {
+    public func requestWhenInUseAuthorization(block: @escaping AuthorizationBlock) {
         self.authorizationBlock = block
         self.locationManager.requestWhenInUseAuthorization()
     }
@@ -201,7 +201,7 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
      
      - parameter block: blok Instance of AuthorizationBlock
      */
-    public func requestAlwaysAuthorization(block: AuthorizationBlock){
+    public func requestAlwaysAuthorization(block: @escaping AuthorizationBlock){
         self.authorizationBlock = block
         self.locationManager.requestAlwaysAuthorization()
     }
@@ -216,7 +216,7 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
      */
     public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus){
         if let block:AuthorizationBlock = self.authorizationBlock {
-            block(status: status)
+            block(status)
         }
     }
 
@@ -229,7 +229,7 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
     public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         for request:LocationRequest in self.requests {
             if request.status == LocationRequestStatus.Active {
-                request.update(error)
+                request.update(error: error)
             }
         }
     }
@@ -249,7 +249,7 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
         // Update status in all active requests
         for request:LocationRequest in self.requests {
             if request.status == LocationRequestStatus.Active {
-                request.update(location)
+                request.update(location: location)
             }
         }
         
