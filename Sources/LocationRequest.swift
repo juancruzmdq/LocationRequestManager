@@ -26,7 +26,7 @@ import CoreLocation
 
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: Types
-public typealias CompleteRequestBlock = (currentLocation:CLLocation?,error: NSError?)->Void
+public typealias CompleteRequestBlock = (_ currentLocation:CLLocation?, _ error: NSError?)->Void
 
 public enum LocationRequestStatus {
     case Pending
@@ -46,14 +46,14 @@ public class LocationRequest {
     public var desiredAccuracy:CLLocationAccuracy = kCLLocationAccuracyThreeKilometers
     public var distanceFilter:CLLocationDistance = kCLDistanceFilterNone;
     public var recurrent:Bool = false
-    public var timeout:NSTimeInterval?
+    public var timeout:TimeInterval?
     public var block:CompleteRequestBlock?
     public var latestLocation:CLLocation?
     public var latestError:NSError?
     
     ////////////////////////////////////////////////////////////////////////////////
     // MARK: Public Properties
-    private var timer:NSTimer?
+    private var timer:Timer?
 
     ////////////////////////////////////////////////////////////////////////////////
     // MARK: Public Methods
@@ -78,13 +78,13 @@ public class LocationRequest {
         self.status = .Active
         
         // If there are an old timer active, invalidate it
-        if let timer:NSTimer = self.timer {
+        if let timer:Timer = self.timer {
             timer.invalidate()
         }
         
         // If there are a currenti timeout defined , start a new timer
-        if let interval:NSTimeInterval = self.timeout {
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(interval,
+        if let interval:TimeInterval = self.timeout {
+            self.timer = Timer.scheduledTimer(timeInterval: interval,
                                                                 target: self,
                                                                 selector: #selector(LocationRequest.onTimeOut),
                                                                 userInfo: nil,
@@ -154,11 +154,11 @@ public class LocationRequest {
      Stop current request timer, and call block that report t the user
      */
     func stopAndReport()  {
-        if let timer:NSTimer = self.timer {
+        if let timer:Timer = self.timer {
             timer.invalidate()
         }
         if let blockToCall:CompleteRequestBlock = self.block {
-            blockToCall(currentLocation: self.latestLocation,error: self.latestError)
+            blockToCall(self.latestLocation,self.latestError)
         }
 
     }
