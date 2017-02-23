@@ -1,5 +1,5 @@
 PODS:
-  - LocationRequestManager (0.1.2)
+  - LocationRequestManager (0.2.0)
   - Nimble (6.0.1)
   - Quick (1.1.0)
 
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LocationRequestManager: f90e465e7cc50bb5147b151d7c190e20084f28cf
+  LocationRequestManager: 92f18165a493903c689650bad93b7cb8c2efd324
   Nimble: 1527fd1bd2b4cf0636251a36bc8ab37e81da8347
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
 
