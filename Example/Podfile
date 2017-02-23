@@ -1,12 +1,25 @@
 use_frameworks!
 
-target 'LocationRequestManager_Example', :exclusive => true do
+target 'LocationRequestManager_Example' do
   pod 'LocationRequestManager', :path => '../'
 end
 
-target 'LocationRequestManager_Tests', :exclusive => true do
+target 'LocationRequestManager_Tests' do
   pod 'LocationRequestManager', :path => '../'
 
-  pod 'Quick', '~> 0.8'
-  pod 'Nimble', '~> 3.0'
+  pod 'Quick'
+  pod 'Nimble'
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['ENABLE_BITCODE'] = 'NO'
+            config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""
+            config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
+            config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
+            config.build_settings['SWIFT_VERSION'] = '3.0'
+            config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', 'SWRVE_DISABLE_LOGS=1']
+        end
+    end
 end

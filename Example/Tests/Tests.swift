@@ -9,7 +9,7 @@ class LocationRequestManagerSpec: QuickSpec {
         describe("LocationRequestManager") {
             it("Constructor") {
                 let lm = LocationRequestManager()
-                expect(lm).to(beTruthy())
+                expect(lm).toNot(beNil())
             }
         }
         describe("LocationRequest") {
@@ -18,7 +18,7 @@ class LocationRequestManagerSpec: QuickSpec {
                 let lr = LocationRequest({ (currentLocation, error) in
                     print("empty")
                 })
-                expect(lr).to(beTruthy())
+                expect(lr).toNot(beNil())
                 expect(lr.status == .Pending).to(beTruthy())
             }
         }
@@ -31,14 +31,14 @@ class LocationRequestManagerSpec: QuickSpec {
                 let lr1 = LocationRequest(nil)
                 let lr2 = LocationRequest(nil)
                 
-                locationManager.addRequest(lr1)
-                locationManager.addRequest(lr2)
+                locationManager.addRequest(request: lr1)
+                locationManager.addRequest(request: lr2)
                 
                 expect(locationManager.requests.count).to(equal(2))
                 
                 // Should avoid duplication of references
-                locationManager.addRequest(lr1)
-                locationManager.addRequest(lr2)
+                locationManager.addRequest(request: lr1)
+                locationManager.addRequest(request: lr2)
                 
                 expect(locationManager.requests.count).to(equal(2))
                 
@@ -47,12 +47,12 @@ class LocationRequestManagerSpec: QuickSpec {
                 let lr1 = LocationRequest(nil)
                 let lr2 = LocationRequest(nil)
                 
-                locationManager.addRequests([lr1,lr2])
+                locationManager.addRequests(requests: [lr1,lr2])
                 
                 expect(locationManager.requests.count).to(equal(2))
                 
                 // Should avoid duplication of references
-                locationManager.addRequests([lr1,lr2])
+                locationManager.addRequests(requests: [lr1,lr2])
                 
                 expect(locationManager.requests.count).to(equal(2))
                 
@@ -61,12 +61,12 @@ class LocationRequestManagerSpec: QuickSpec {
                 let lr1 = LocationRequest(nil)
                 let lr2 = LocationRequest(nil)
                 
-                locationManager.addRequest(lr1)
-                locationManager.addRequest(lr2)
+                locationManager.addRequest(request: lr1)
+                locationManager.addRequest(request: lr2)
                 
                 expect(locationManager.requests.count).to(equal(2))
                 
-                locationManager.removeRequest(lr2)
+                locationManager.removeRequest(request: lr2)
                 
                 expect(locationManager.requests.count).to(equal(1))
                 
@@ -76,12 +76,12 @@ class LocationRequestManagerSpec: QuickSpec {
                 let lr2 = LocationRequest(nil)
                 let lr3 = LocationRequest(nil)
                 
-                locationManager.addRequests([lr1,lr2,lr3])
+                locationManager.addRequests(requests: [lr1,lr2,lr3])
                 
                 expect(locationManager.requests.count).to(equal(3))
                 
                 // Should avoid duplication of references
-                locationManager.removeRequests([lr1,lr3])
+                locationManager.removeRequests(requests: [lr1,lr3])
                 
                 expect(locationManager.requests.count).to(equal(1))
             }
@@ -90,7 +90,7 @@ class LocationRequestManagerSpec: QuickSpec {
                 let lr2 = LocationRequest(nil)
                 let lr3 = LocationRequest(nil)
                 
-                locationManager.addRequests([lr1,lr2,lr3])
+                locationManager.addRequests(requests: [lr1,lr2,lr3])
                 
                 expect(locationManager.requests.count).to(equal(3))
                 

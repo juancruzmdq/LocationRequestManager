@@ -1,20 +1,22 @@
 PODS:
-  - LocationRequestManager (0.1.0)
-  - Nimble (3.2.0)
-  - Quick (0.9.2)
+  - LocationRequestManager (0.1.2)
+  - Nimble (6.0.1)
+  - Quick (1.1.0)
 
 DEPENDENCIES:
   - LocationRequestManager (from `../`)
-  - Nimble (~> 3.0)
-  - Quick (~> 0.8)
+  - Nimble
+  - Quick
 
 EXTERNAL SOURCES:
   LocationRequestManager:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LocationRequestManager: 5d0d174e164d356d1f92cffa48d255a6466b26a5
-  Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
-  Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
+  LocationRequestManager: f90e465e7cc50bb5147b151d7c190e20084f28cf
+  Nimble: 1527fd1bd2b4cf0636251a36bc8ab37e81da8347
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 895c8dbed4f8f91dcf8292611ee3cc4f25fd550b
+
+COCOAPODS: 1.0.1
