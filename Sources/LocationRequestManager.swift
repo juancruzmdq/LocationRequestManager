@@ -214,7 +214,7 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
      - parameter manager: instance of CLLocationManager
      - parameter status:  CLAuthorizationStatus status
      */
-    public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus){
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if let block:AuthorizationBlock = self.authorizationBlock {
             block(status)
         }
@@ -226,7 +226,8 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
      - parameter manager: instance of CLLocationManager
      - parameter error:   instance of NSError
      */
-    public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         for request:LocationRequest in self.requests {
             if request.status == LocationRequestStatus.Active {
                 request.update(error: error)
@@ -234,15 +235,13 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
         }
     }
     
-    
     /**
      Report location update to all active request, if all request are finished stop the location tracking
      
      - parameter manager:   instance of CLLocationManager
      - parameter locations: array of CLLocation
      */
-    public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Get first location element
         let location = locations[0]
         
@@ -260,12 +259,10 @@ public class LocationRequestManager : NSObject,CLLocationManagerDelegate{
                 shouldStopManager = false
             }
         }
-
+        
         // If there are no request, stop the location tracker
         if shouldStopManager {
             self.locationManager.stopUpdatingLocation()
         }
     }
-    
-    
 }

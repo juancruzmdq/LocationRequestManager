@@ -26,7 +26,7 @@ import CoreLocation
 
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: Types
-public typealias CompleteRequestBlock = (_ currentLocation:CLLocation?, _ error: NSError?)->Void
+public typealias CompleteRequestBlock = (_ currentLocation:CLLocation?, _ error: Error?)->Void
 
 public enum LocationRequestStatus {
     case Pending
@@ -49,7 +49,7 @@ public class LocationRequest {
     public var timeout:TimeInterval?
     public var block:CompleteRequestBlock?
     public var latestLocation:CLLocation?
-    public var latestError:NSError?
+    public var latestError:Error?
     
     ////////////////////////////////////////////////////////////////////////////////
     // MARK: Public Properties
@@ -95,11 +95,11 @@ public class LocationRequest {
     /**
      Update current request with an error status, and finish the request
      
-     - parameter error: instance of NSError
+     - parameter error: instance of Error
      
      - returns: true if the request was updated
      */
-    func update(error: NSError) -> Bool {
+    func update(error: Error) -> Bool {
         self.latestError = error
         self.complete()
         return true
