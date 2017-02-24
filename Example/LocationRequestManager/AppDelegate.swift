@@ -23,11 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        self.basicRequest = LocationRequest{(currentLocation:CLLocation?,error: NSError?)->Void in
+        self.basicRequest = LocationRequest{(currentLocation:CLLocation?,error: Error?)->Void in
             print("\(self.basicRequest!.status) - \(currentLocation) - \(error)")
         }
         
-        self.timeoutRequest = LocationRequest{(currentLocation:CLLocation?,error: NSError?)->Void in
+        self.timeoutRequest = LocationRequest{(currentLocation:CLLocation?,error: Error?)->Void in
             print("\(self.timeoutRequest!.status) - \(currentLocation) - \(error)")
         }
 
